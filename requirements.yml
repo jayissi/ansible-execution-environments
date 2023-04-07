@@ -1,7 +1,7 @@
 ---
 collections:
   - name: community.general
-  - name: awx.awx
+#  - name: awx.awx
 #  - name: infra.controller_configuration
 #  - name: infra.ah_configuration
 #  - name: infra.ee_utilities
