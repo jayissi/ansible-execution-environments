@@ -1,6 +1,6 @@
 # Example EEs
 
-To just build the EE context.1
+To just build the EE context.
 ```bash
 ansible-builder build -v 3
 ```
