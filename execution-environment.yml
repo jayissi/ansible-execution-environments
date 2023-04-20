@@ -15,7 +15,7 @@ dependencies:
 
 additional_build_steps:
   prepend: |
-    RUN Ansible Builder prepend section
+    RUN echo Ansible Builder prepend section
     RUN ls -lR
     RUN ls -l /
   append:
