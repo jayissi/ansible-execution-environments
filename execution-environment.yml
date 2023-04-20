@@ -16,11 +16,14 @@ dependencies:
 additional_build_steps:
   prepend: |
     RUN echo Ansible Builder prepend section
+    RUN pwd
+    RUN echo $HOME
     RUN ls -lR
     RUN ls -l /
   append:
     - RUN echo This is a post-install command!
     - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /runner/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
     - RUN ls -lR /runner
-    - RUN ls -lR /dev
-    - RUN ls -lR /tmp
+    - RUN ls -lR /remote-source
+    - RUN ls -lR /home
+    - RUN ls -lR /root
