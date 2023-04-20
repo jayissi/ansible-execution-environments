@@ -10,13 +10,16 @@ ansible_config: './ansible.cfg'
 
 dependencies:
   galaxy: ./requirements.yml
-  python: ./requirements.txt
+#  python: ./requirements.txt
   system: ./bindep.txt
 
 additional_build_steps:
   prepend: |
-    RUN whoami
-    RUN cat /etc/os-release
+    RUN Ansible Builder prepend section
+    RUN ls -lR
+    RUN ls -l /
   append:
     - RUN echo This is a post-install command!
-    - RUN ls -la /etc
+    - RUN ls -lR /runner
+    - RUN ls -lR /dev
+    - RUN ls -lR /tmp
