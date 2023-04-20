@@ -10,25 +10,15 @@ ansible_config: './ansible.cfg'
 
 dependencies:
   galaxy: ./requirements.yml
-#  python: ./requirements.txt
+  python: ./requirements.txt
   system: ./bindep.txt
 
 additional_build_steps:
   prepend: |
     RUN echo Ansible Builder prepend section
-    RUN pwd
     RUN echo $HOME
-    RUN ls -lR /runner
-    RUN ls -ld /runner
     RUN ls -lR $HOME
-    RUN ls -ld $HOME
-    RUN ls -lR /tmp
   append:
     - RUN echo This is a post-install command!
-    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /home/runner/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
-    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /tmp/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
-    - RUN ls -lR /runner
+    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm $HOME/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
     - RUN ls -lR $HOME
-    - RUN ls -lR /tmp
-    # expected error below
-    - COPY qemdasfu-iasdgmg-7.0.0-13.el9_1.2.x86_64.rpm /root/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
