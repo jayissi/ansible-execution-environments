@@ -18,12 +18,18 @@ additional_build_steps:
     RUN echo Ansible Builder prepend section
     RUN pwd
     RUN echo $HOME
-    RUN ls -lR
+    RUN ls -lR /home/runner
+    RUN ls -lR /runner
+    RUN ls -lR /tmp
     RUN ls -l /
   append:
     - RUN echo This is a post-install command!
-    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /runner/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
+    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /home/runner/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
+    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm /tmp/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
     - RUN ls -lR /runner
+    - RUN ls -lR /home/runner
     - RUN ls -lR /remote-source
     - RUN ls -lR /home
     - RUN ls -lR /root
+    # expected error below
+    - COPY qemdasfu-iasdgmg-7.0.0-13.el9_1.2.x86_64.rpm /root/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
