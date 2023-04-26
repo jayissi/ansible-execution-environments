@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: test-registry.redhat.io-sa
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault
+    kind: SecretStore
+  target:
+    name: test-registry.redhat.io-sa
+    template:
+      type: kubernetes.io/dockerconfigjson
+    creationPolicy: Owner
+  dataFrom:
+  - extract:
+      key: openshift/pipeline/registry.redhat.io-sa
