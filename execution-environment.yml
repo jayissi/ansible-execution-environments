@@ -20,5 +20,5 @@ additional_build_steps:
     RUN ls -lR $HOME
   append:
     - RUN echo This is a post-install command!
-    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm $HOME/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
+#    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm $HOME/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
     - RUN ls -lR $HOME
