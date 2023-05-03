@@ -2,3 +2,4 @@ qemu-img
 jq
 hostname
 rsync
+findutils
