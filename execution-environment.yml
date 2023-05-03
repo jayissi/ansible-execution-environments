@@ -21,7 +21,8 @@ additional_build_steps:
   append:
     - RUN echo This is a post-install command!
     - RUN echo list installed ansible collections.
-    - RUN find /usr/share/ansible/collections/ansible_collections/ -type d -maxdepth 2
+#    - RUN find /usr/share/ansible/collections/ansible_collections/ -type d -maxdepth 2
+    - RUN find /usr/share/ansible/collections/ansible_collections/ -type d -name *.info
     - RUN echo list installed pip packages.
     - RUN pip3 list
     - RUN echo list installed rpm packages.
