@@ -20,5 +20,9 @@ additional_build_steps:
     RUN ls -lR $HOME
   append:
     - RUN echo This is a post-install command!
-#    - COPY qemu-img-7.0.0-13.el9_1.2.x86_64.rpm $HOME/qemu-img-7.0.0-13.el9_1.2.x86_64.rpm
-    - RUN ls -lR $HOME
+    - RUN echo list installed ansible collections.
+    - RUN ls -lR /usr/share/ansible/collections/ansible_collections/
+    - RUN echo list installed pip packages.
+    - RUN pip3 list
+    - RUN echo list installed rpm packages.
+    - RUN rpm -qa
