@@ -27,3 +27,5 @@ additional_build_steps:
     - RUN pip3 list
     - RUN echo list installed rpm packages.
     - RUN rpm -qa | sort
+    - RUN whoami
+    - RUN pip3 show cx_Oracle
