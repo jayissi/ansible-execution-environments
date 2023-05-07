@@ -62,29 +62,29 @@ if [ "$MYHOME" != "$HOME" ] || [ "$MYHOME" != "/home/runner" ]; then
   export HOME=/home/runner
 fi
 
-#if [[ -n "${LAUNCHED_BY_RUNNER:-}" ]]; then
-#    # Special actions to be compatible with old ansible-runner versions, 2.1.x specifically
-#    RUNNER_CALLBACKS=$(python3 -c "from ansible_runner.display_callback.callback import awx_display; print(awx_display.__file__)")
-#    ANSIBLE_CALLBACK_PLUGINS="$(dirname "$RUNNER_CALLBACKS")"
-#    export ANSIBLE_CALLBACK_PLUGINS
-#
-#    # old versions split the callback name between awx_display and minimal, but new version just uses awx_display
-#    export ANSIBLE_STDOUT_CALLBACK=awx_display
-#fi
+if [[ -n "${LAUNCHED_BY_RUNNER:-}" ]]; then
+    # Special actions to be compatible with old ansible-runner versions, 2.1.x specifically
+    RUNNER_CALLBACKS=$(python3 -c "from ansible_runner.display_callback.callback import awx_display; print(awx_display.__file__)")
+    ANSIBLE_CALLBACK_PLUGINS="$(dirname "$RUNNER_CALLBACKS")"
+    export ANSIBLE_CALLBACK_PLUGINS
 
-#if [[ -n "${AWX_ISOLATED_DATA_DIR:-}" && -d ${AWX_ISOLATED_DATA_DIR} ]]; then
-#    if output=$(ansible-galaxy collection list --format json 2> /dev/null); then
-#        echo "$output" > "${AWX_ISOLATED_DATA_DIR}/collections.json"
-#    fi
-#    ansible --version 2> /dev/null | head -n 1 > "${AWX_ISOLATED_DATA_DIR}/ansible_version.txt"
-#fi
+    # old versions split the callback name between awx_display and minimal, but new version just uses awx_display
+    export ANSIBLE_STDOUT_CALLBACK=awx_display
+fi
 
-#for SCRIPT in /usr/local/bin/dumb-init /usr/bin/dumb-init /bin/dumb-init; do
-#  if [ -f "$SCRIPT" ]; then
-#    if [ $# -eq 0 ]; then
-#      exec "$SCRIPT" -- "/bin/bash"
-#    else
-#      exec "$SCRIPT" -- "${@}"
-#    fi
-#  fi
-#done
+if [[ -n "${AWX_ISOLATED_DATA_DIR:-}" && -d ${AWX_ISOLATED_DATA_DIR} ]]; then
+    if output=$(ansible-galaxy collection list --format json 2> /dev/null); then
+        echo "$output" > "${AWX_ISOLATED_DATA_DIR}/collections.json"
+    fi
+    ansible --version 2> /dev/null | head -n 1 > "${AWX_ISOLATED_DATA_DIR}/ansible_version.txt"
+fi
+
+for SCRIPT in /usr/local/bin/dumb-init /usr/bin/dumb-init /bin/dumb-init; do
+  if [ -f "$SCRIPT" ]; then
+    if [ $# -eq 0 ]; then
+      exec "$SCRIPT" -- "/bin/bash"
+    else
+      exec "$SCRIPT" -- "${@}"
+    fi
+  fi
+done
